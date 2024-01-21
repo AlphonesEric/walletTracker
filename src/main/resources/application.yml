@@ -1,0 +1,20 @@
+# Spring配置
+spring:
+  profiles:
+    active: dev
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+
+# 日志配置
+logging:
+  level:
+    com.kpy: debug
+    org.springframework: warn
+
+
+jasypt:
+  encryptor:
+    password: YJZH_ENCR #生产环境需要将该配置隐藏，并在启动jar的命令后配置该参数
+    algorithm: PBEWITHHMACSHA512ANDAES_256
