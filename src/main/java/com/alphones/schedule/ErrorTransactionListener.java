@@ -22,9 +22,9 @@ public class ErrorTransactionListener {
     @Autowired
     private TransactionListener transactionListener;
 
-    @Scheduled(cron = "0 0 0 * * ?")    //every day at 00:00
-    public void trackNoConfirmTransaction(){
+    @Scheduled(cron = "0 0 0 * * ?")    // every day at 00:00
+    public void trackNoConfirmTransaction() {
         List<TransactionInfo> transactionInfos = transactionService.queryWaitConfirmTransactions();
-        transactionInfos.forEach(t->transactionListener.putTransaction(t));
+        transactionInfos.forEach(t -> transactionListener.putTransaction(t));
     }
 }

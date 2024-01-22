@@ -20,13 +20,13 @@ public class TokenController {
     }
 
     @PostMapping({"/add"})
-    public R addToken(@RequestBody final Token token) {
+    public R addToken(@RequestBody Token token) {
         this.tokenService.saveOrUpdate(token);
         return R.ok();
     }
 
     @DeleteMapping({"/delete/{address}"})
-    public R addToken(@PathVariable final String address) {
+    public R addToken(@PathVariable String address) {
         this.tokenService.deleteToken(address);
         return R.ok();
     }

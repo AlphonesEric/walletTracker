@@ -3,7 +3,7 @@ package com.alphones.transaction.listen;
 import cn.hutool.core.util.StrUtil;
 import com.alphones.transaction.entity.TransactionInfo;
 import com.alphones.transaction.handler.TransactionHandleService;
-import com.lmax.disruptor.*;
+import com.lmax.disruptor.EventHandler;
 
 public class TransactionConsumer implements EventHandler<TransactionEvent> {
     private TransactionHandleService transactionService;

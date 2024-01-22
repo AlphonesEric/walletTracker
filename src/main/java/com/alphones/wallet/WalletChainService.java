@@ -37,7 +37,8 @@ public class WalletChainService {
         List<TypeReference<?>> outputParameters = Collections.unmodifiableList(new ArrayList<>());
         Address address = new Address(fromAddress);
         inputParameters.add(address);
-        TypeReference<Uint256> typeReference = new TypeReference<Uint256>() {};
+        TypeReference<Uint256> typeReference = new TypeReference<Uint256>() {
+        };
         outputParameters.add(typeReference);
         Function function = new Function(methodName, inputParameters, outputParameters);
         String data = FunctionEncoder.encode(function);
@@ -58,7 +59,8 @@ public class WalletChainService {
         Object callInfo = null;
         String fromAddr = Config.emptyAddress;
         Function function = new Function(methodName, Arrays.asList(new Address(owner), new Address(spender)),
-                Collections.singletonList(new TypeReference<Uint256>() {}));
+                Collections.singletonList(new TypeReference<Uint256>() {
+                }));
         String data = FunctionEncoder.encode(function);
         Transaction transaction = Transaction.createEthCallTransaction(fromAddr, contractAddress, data);
         EthCall ethCall = null;

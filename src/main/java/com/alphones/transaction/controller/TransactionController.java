@@ -14,7 +14,7 @@ public class TransactionController {
     private ITransactionService transactionService;
 
     @PostMapping({"/add/strategy"})
-    public R<Boolean> addStrategy(@RequestParam final String transactionType, @RequestParam final String className) {
+    public R<Boolean> addStrategy(@RequestParam String transactionType, @RequestParam String className) {
         this.transactionService.addStrategyTypeMap(transactionType, className);
         return R.ok();
     }

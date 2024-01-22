@@ -27,7 +27,7 @@ public class TransactionInfo implements Serializable {
     private Integer reTryCount = 3;
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }

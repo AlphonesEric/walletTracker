@@ -9,7 +9,7 @@ public class TransactionEvent {
         return this.transactionInfo;
     }
 
-    public void setTransactionInfo(final TransactionInfo transactionInfo) {
+    public void setTransactionInfo(TransactionInfo transactionInfo) {
         this.transactionInfo = transactionInfo;
     }
 

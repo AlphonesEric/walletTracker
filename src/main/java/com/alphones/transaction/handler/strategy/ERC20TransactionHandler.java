@@ -9,7 +9,6 @@ import org.web3j.protocol.core.methods.response.Log;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
 import java.math.BigInteger;
-import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -19,7 +18,7 @@ public class ERC20TransactionHandler extends AbstractTransactionHandler {
     }
 
     @Override
-    public void parseTransactionInfo(final TransactionReceipt transaction, final TransactionInfo transactionInfo) {
+    public void parseTransactionInfo(TransactionReceipt transaction, TransactionInfo transactionInfo) {
         transactionInfo.setStatus(transaction.getStatus());
         transactionInfo.setGas(transaction.getGasUsed());
         transactionInfo.setBlockHash(transaction.getBlockHash());
@@ -28,9 +27,9 @@ public class ERC20TransactionHandler extends AbstractTransactionHandler {
         if (CollectionUtil.isNotEmpty(transaction.getLogs())) {
             transactionInfo.setLog(JSON.toJSONString(transaction.getLogs()));
         }
-        final List<Log> logs = transaction.getLogs();
-        for (final Log log : logs) {
-            final String eventSignature = log.getTopics().get(0);
+        List<Log> logs = transaction.getLogs();
+        for (Log log : logs) {
+            String eventSignature = log.getTopics().get(0);
             if (this.transferEventSignature().equals(eventSignature)) {
                 transactionInfo.setFrom(log.getTopics().get(1));
                 transactionInfo.setTo(log.getTopics().get(2));

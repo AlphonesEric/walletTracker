@@ -18,58 +18,58 @@ import java.util.Map;
  * @date 2024/01/16 19:04
  */
 public class Web3jClient {
-    private static final Map<BigInteger, String> chainId2ChainNet;
+    private static Map<BigInteger, String> chainId2ChainNet;
 
-    public static Web3j getClient(final String node) {
+    public static Web3j getClient(String node) {
         return Web3j.build(new HttpService(node));
     }
 
-    public static Web3j getClient(final BigInteger chainId) {
-        final String node = Web3jClient.chainId2ChainNet.get(chainId);
+    public static Web3j getClient(BigInteger chainId) {
+        String node = Web3jClient.chainId2ChainNet.get(chainId);
         return Web3j.build(new HttpService(node));
     }
 
-    public static BigInteger getClientChainId(final Web3j web3j) throws IOException {
-        final NetVersion netVersion = web3j.netVersion().send();
+    public static BigInteger getClientChainId(Web3j web3j) throws IOException {
+        NetVersion netVersion = web3j.netVersion().send();
         return new BigInteger(netVersion.getNetVersion());
     }
 
-    public static BigDecimal getUserChainBalance(final Web3j web3j, final String address) throws IOException {
-        final BigInteger balanceWei = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance();
+    public static BigDecimal getUserChainBalance(Web3j web3j, String address) throws IOException {
+        BigInteger balanceWei = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance();
         return Convert.fromWei(balanceWei.toString(), Convert.Unit.ETHER);
     }
 
-    public static void getEthInfo(final Web3j web3j) {
+    public static void getEthInfo(Web3j web3j) {
         Web3ClientVersion web3ClientVersion = null;
         try {
             web3ClientVersion = web3j.web3ClientVersion().send();
-            final String clientVersion = web3ClientVersion.getWeb3ClientVersion();
+            String clientVersion = web3ClientVersion.getWeb3ClientVersion();
             System.out.println("clientVersion " + clientVersion);
-            final EthBlockNumber ethBlockNumber = web3j.ethBlockNumber().send();
-            final BigInteger blockNumber = ethBlockNumber.getBlockNumber();
+            EthBlockNumber ethBlockNumber = web3j.ethBlockNumber().send();
+            BigInteger blockNumber = ethBlockNumber.getBlockNumber();
             System.out.println(blockNumber);
-            final EthCoinbase ethCoinbase = web3j.ethCoinbase().send();
-            final String coinbaseAddress = ethCoinbase.getAddress();
+            EthCoinbase ethCoinbase = web3j.ethCoinbase().send();
+            String coinbaseAddress = ethCoinbase.getAddress();
             System.out.println(coinbaseAddress);
-            final EthSyncing ethSyncing = web3j.ethSyncing().send();
-            final boolean isSyncing = ethSyncing.isSyncing();
+            EthSyncing ethSyncing = web3j.ethSyncing().send();
+            boolean isSyncing = ethSyncing.isSyncing();
             System.out.println(isSyncing);
-            final EthMining ethMining = web3j.ethMining().send();
-            final boolean isMining = ethMining.isMining();
+            EthMining ethMining = web3j.ethMining().send();
+            boolean isMining = ethMining.isMining();
             System.out.println(isMining);
-            final EthGasPrice ethGasPrice = web3j.ethGasPrice().send();
-            final BigInteger gasPrice = ethGasPrice.getGasPrice();
+            EthGasPrice ethGasPrice = web3j.ethGasPrice().send();
+            BigInteger gasPrice = ethGasPrice.getGasPrice();
             System.out.println(gasPrice);
-            final EthHashrate ethHashrate = web3j.ethHashrate().send();
-            final BigInteger hashRate = ethHashrate.getHashrate();
+            EthHashrate ethHashrate = web3j.ethHashrate().send();
+            BigInteger hashRate = ethHashrate.getHashrate();
             System.out.println(hashRate);
-            final EthProtocolVersion ethProtocolVersion = web3j.ethProtocolVersion().send();
-            final String protocolVersion = ethProtocolVersion.getProtocolVersion();
+            EthProtocolVersion ethProtocolVersion = web3j.ethProtocolVersion().send();
+            String protocolVersion = ethProtocolVersion.getProtocolVersion();
             System.out.println(protocolVersion);
-            final NetPeerCount netPeerCount = web3j.netPeerCount().send();
-            final BigInteger peerCount = netPeerCount.getQuantity();
+            NetPeerCount netPeerCount = web3j.netPeerCount().send();
+            BigInteger peerCount = netPeerCount.getQuantity();
             System.out.println(peerCount);
-        } catch (final IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -18,7 +18,7 @@ import java.util.Map;
 public abstract class AbstractTransactionHandler {
     @Autowired
     protected ITransactionService transactionService;
-    private final Map<BigInteger, Web3j> chain2Client;
+    private Map<BigInteger, Web3j> chain2Client;
 
     public AbstractTransactionHandler() {
         this.chain2Client = new HashMap<>();
@@ -48,9 +48,6 @@ public abstract class AbstractTransactionHandler {
             EthGetTransactionReceipt receipt = web3j.ethGetTransactionReceipt(transactionInfo.getHash()).send();
             if (receipt.getTransactionReceipt().isPresent()) {
                 TransactionReceipt transaction = receipt.getTransactionReceipt().get();
-                if (transaction.getBlockHash() == null) {
-                    return false;
-                }
                 this.parseTransactionInfo(transaction, transactionInfo);
                 this.transactionService.saveOrUpdate(transactionInfo);
                 return true;

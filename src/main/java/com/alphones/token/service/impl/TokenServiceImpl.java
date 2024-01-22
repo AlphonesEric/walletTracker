@@ -19,7 +19,7 @@ import java.util.*;
 public class TokenServiceImpl implements ITokenService {
     @Autowired
     private RedisCache redisCache;
-    private final String tokenKey = "token";
+    private String tokenKey = "token";
 
     @Override
     public boolean saveOrUpdate(Token token) {

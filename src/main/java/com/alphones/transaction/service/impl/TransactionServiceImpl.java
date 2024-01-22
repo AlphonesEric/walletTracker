@@ -68,7 +68,7 @@ public class TransactionServiceImpl implements ITransactionService {
         if (cacheMap == null) {
             return Collections.emptyList();
         }
-        return cacheMap.values().stream().filter(t->t.getStatus() == null).collect(Collectors.toList());
+        return cacheMap.values().stream().filter(t -> t.getStatus() == null).collect(Collectors.toList());
     }
 
 }

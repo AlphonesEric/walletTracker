@@ -17,7 +17,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Data
 public class Token implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
     private String address;
     private String name;
     private String symbol;
@@ -26,14 +26,14 @@ public class Token implements Serializable {
     private BigInteger chainId;
 
     @Override
-    public boolean equals(final Object o) {
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
         if (!(o instanceof Token)) {
             return false;
         }
-        Token other = (Token)o;
+        Token other = (Token) o;
         return this.getAddress().equals(other.getAddress());
     }
 

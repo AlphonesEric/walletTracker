@@ -20,11 +20,11 @@ public class WalletVo {
         return this.token;
     }
 
-    public void setWallet(final Wallet wallet) {
+    public void setWallet(Wallet wallet) {
         this.wallet = wallet;
     }
 
-    public void setToken(final Token token) {
+    public void setToken(Token token) {
         this.token = token;
     }
 }

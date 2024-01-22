@@ -4,7 +4,7 @@ import com.alphones.transaction.entity.TransactionInfo;
 import com.lmax.disruptor.RingBuffer;
 
 public class TransactionProducer {
-    private final RingBuffer<TransactionEvent> ringBuffer;
+    private RingBuffer<TransactionEvent> ringBuffer;
 
     public TransactionProducer(RingBuffer<TransactionEvent> ringBuffer) {
         this.ringBuffer = ringBuffer;
@@ -15,7 +15,7 @@ public class TransactionProducer {
         try {
             TransactionEvent event = this.ringBuffer.get(sequence);
             event.setTransactionInfo(transactionInfo);
-        } finally {
+        } ly {
             this.ringBuffer.publish(sequence);
         }
     }

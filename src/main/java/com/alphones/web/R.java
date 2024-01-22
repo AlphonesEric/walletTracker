@@ -14,11 +14,11 @@ public class R<T> implements Serializable {
         return restResult(null, HttpStatus.SUCCESS, "操作成功");
     }
 
-    public static <T> R<T> ok(final T data) {
+    public static <T> R<T> ok(T data) {
         return restResult(data, HttpStatus.SUCCESS, "操作成功");
     }
 
-    public static <T> R<T> ok(final T data, final String msg) {
+    public static <T> R<T> ok(T data, String msg) {
         return restResult(data, HttpStatus.SUCCESS, msg);
     }
 
@@ -26,24 +26,24 @@ public class R<T> implements Serializable {
         return restResult(null, HttpStatus.ERROR, "操作失败");
     }
 
-    public static <T> R<T> fail(final String msg) {
+    public static <T> R<T> fail(String msg) {
         return restResult(null, HttpStatus.ERROR, msg);
     }
 
-    public static <T> R<T> fail(final T data) {
+    public static <T> R<T> fail(T data) {
         return restResult(data, HttpStatus.ERROR, "操作失败");
     }
 
-    public static <T> R<T> fail(final T data, final String msg) {
+    public static <T> R<T> fail(T data, String msg) {
         return restResult(data, HttpStatus.ERROR, msg);
     }
 
-    public static <T> R<T> fail(final int code, final String msg) {
+    public static <T> R<T> fail(int code, String msg) {
         return restResult(null, code, msg);
     }
 
-    private static <T> R<T> restResult(final T data, final int code, final String msg) {
-        final R<T> apiResult = new R<T>();
+    private static <T> R<T> restResult(T data, int code, String msg) {
+        R<T> apiResult = new R<T>();
         apiResult.setCode(code);
         apiResult.setData(data);
         apiResult.setMsg(msg);
@@ -54,7 +54,7 @@ public class R<T> implements Serializable {
         return this.code;
     }
 
-    public void setCode(final int code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -62,7 +62,7 @@ public class R<T> implements Serializable {
         return this.msg;
     }
 
-    public void setMsg(final String msg) {
+    public void setMsg(String msg) {
         this.msg = msg;
     }
 
@@ -70,15 +70,15 @@ public class R<T> implements Serializable {
         return this.data;
     }
 
-    public void setData(final T data) {
+    public void setData(T data) {
         this.data = data;
     }
 
-    public static <T> Boolean isError(final R<T> ret) {
+    public static <T> Boolean isError(R<T> ret) {
         return !isSuccess(ret);
     }
 
-    public static <T> Boolean isSuccess(final R<T> ret) {
+    public static <T> Boolean isSuccess(R<T> ret) {
         return HttpStatus.SUCCESS == ret.getCode();
     }
 }
